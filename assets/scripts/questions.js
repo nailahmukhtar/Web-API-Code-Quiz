@@ -1,5 +1,8 @@
 var questionElement = document.querySelector("#question-title");
 var answerElement = document.querySelector("#choices");
+var points = 0;
+var incorrect = document.querySelector('button')
+
 
 var questions = [
     {
@@ -18,6 +21,31 @@ var questions = [
         {answerText: "<scripting>", isCorrect: false},
         {answerText: "<js>", isCorrect: false}
         ]
+    },
+    {
+    question: "How do you write 'Hello World' in an alert box?",
+    answers: [
+        {answerText: "msgBox('Hello Word')", isCorrect: false},
+        {answerText: "msg('Hello World')", isCorrect: false},
+        {answerText: "alertBox('Hello World')", isCorrect: false},
+        {answerText: "alert('Hello World')", isCorrect: true}
+        ]
+    },
+    {
+    question: "How do you create a function in JavaScript?",
+    answers: [
+        {answerText: "function = myFunction()", isCorrect: false},
+        {answerText: "function:myFunction()", isCorrect: false},
+        {answerText: "function myFunction()", isCorrect: true},
+        ]
+    },
+    {
+    question: "How can you add a comment in a JavaScript?",
+    answers: [
+        {answerText: "<!-- Comment here -->", isCorrect: false},
+        {answerText: "//This is a comment", isCorrect: true},
+        {answerText: "''This is a comment", isCorrect: false},
+        ]
     }
 ]
 
@@ -29,14 +57,33 @@ function randomQuestion() {
 function setQuestion() {
     var pickRandomQuestion = randomQuestion();
     questionElement.textContent = questions[pickRandomQuestion].question;
+    
+    //loop through answers for question and render on page
     questions[pickRandomQuestion].answers.forEach(element => {
         var button = document.createElement("button");
         answerElement.appendChild(button);
         button.textContent = element.answerText;
         button.setAttribute("class", "start");
+        //if answer is correct, add data attribute
+        button.dataset.isCorrect = element.isCorrect        
+        // if(element.isCorrect) {
+        //     button.dataset.isCorrect = element.isCorrect
+        //     console.log(element.isCorrect);
+        // }
+
+        //listen to answer click event
+        button.addEventListener("click", function(event) {
+            chosenAnswer = event.target;
+            if (chosenAnswer.dataset.isCorrect === "true") {
+                points+=5;
+                console.log(points);
+            } else {
+                points-=5;
+            }
+
+        })
     })
 }
 
-setQuestion();
-console.log("Hello");
 
+// setQuestion();
