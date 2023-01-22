@@ -21,10 +21,15 @@ var questions = [
     }
 ]
 
+// function to randomly select question from array
+function randomQuestion() {
+    return Math.floor(Math.random() * questions.length);
+  }
 
 function setQuestion() {
-    questionElement.textContent = questions[1].question;
-    questions[1].answers.forEach(element => {
+    var pickRandomQuestion = randomQuestion();
+    questionElement.textContent = questions[pickRandomQuestion].question;
+    questions[pickRandomQuestion].answers.forEach(element => {
         var button = document.createElement("button");
         answerElement.appendChild(button);
         button.textContent = element.answerText;
