@@ -10,9 +10,10 @@ var button = document.querySelector("button");
 var questionElement = document.querySelector("#question-title");
 var answerElement = document.querySelector("#choices");
 var points = 0;
-var incorrect = document.querySelector('button')
+var pointCount = localStorage.getItem("pointCount");
 
-var secondsLeft = 76;
+
+var secondsLeft = 10;
 
 function setTime() {
   // Sets interval in variable
@@ -20,9 +21,10 @@ function setTime() {
     secondsLeft--;
     timer.textContent = "Time: " + secondsLeft;
 
-    if(secondsLeft === 0) {
+    if(secondsLeft === 0 || secondsLeft < 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
+      secondsLeft =0;
       // Calls function to create and append image
         endScreen.setAttribute("class", "start"); 
         questionsScreen.setAttribute("class", "hide");   
@@ -61,9 +63,11 @@ function setQuestion() {
           if (chosenAnswer.dataset.isCorrect === "true") {
               points+=5;
               console.log(points);
+              localStorage.setItem("pointCount", points);
           } else {
               points-=5;
               secondsLeft -=10;
+              localStorage.setItem("pointCount", points);
           }
 
         })
