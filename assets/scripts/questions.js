@@ -1,9 +1,3 @@
-var questionElement = document.querySelector("#question-title");
-var answerElement = document.querySelector("#choices");
-var points = 0;
-var incorrect = document.querySelector('button')
-
-
 var questions = [
     {
     question: "Where is the correct place to insert a JavaScript?",
@@ -54,36 +48,7 @@ function randomQuestion() {
     return Math.floor(Math.random() * questions.length);
   }
 
-function setQuestion() {
-    var pickRandomQuestion = randomQuestion();
-    questionElement.textContent = questions[pickRandomQuestion].question;
-    
-    //loop through answers for question and render on page
-    questions[pickRandomQuestion].answers.forEach(element => {
-        var button = document.createElement("button");
-        answerElement.appendChild(button);
-        button.textContent = element.answerText;
-        button.setAttribute("class", "start");
-        //if answer is correct, add data attribute
-        button.dataset.isCorrect = element.isCorrect        
-        // if(element.isCorrect) {
-        //     button.dataset.isCorrect = element.isCorrect
-        //     console.log(element.isCorrect);
-        // }
 
-        //listen to answer click event
-        button.addEventListener("click", function(event) {
-            chosenAnswer = event.target;
-            if (chosenAnswer.dataset.isCorrect === "true") {
-                points+=5;
-                console.log(points);
-            } else {
-                points-=5;
-            }
-
-        })
-    })
-}
 
 
 // setQuestion();

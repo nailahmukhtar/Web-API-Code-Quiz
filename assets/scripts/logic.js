@@ -48,7 +48,7 @@ startQuiz.addEventListener("click", function(event) {
 function setQuestion() {
   var pickRandomQuestion = randomQuestion();
   questionElement.textContent = questions[pickRandomQuestion].question;
-  
+    
   //loop through answers for question and render on page
   questions[pickRandomQuestion].answers.forEach(element => {
       var button = document.createElement("button");
@@ -72,4 +72,12 @@ function setQuestion() {
 
         })
     })
+}
+
+
+function submitHighscore() {
+  var initials = document.querySelector("#initials");
+  localStorage.setItem("initials", initials.value);
+  document.location.href = ('./highscores.html');
+  
 }
