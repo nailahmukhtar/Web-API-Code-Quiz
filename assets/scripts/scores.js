@@ -20,6 +20,9 @@ var highscoreElement = document.querySelector('#highscores');
         item.textContent = element;
     });
 
+localStorage.setItem("initials", "null");
+localStorage.setItem("pointCount", "null");
+
 
 //clear score function
 function clearScores() {

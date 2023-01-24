@@ -42,13 +42,3 @@ var questions = [
         ]
     }
 ]
-
-// function to randomly select question from array
-function randomQuestion() {
-    return Math.floor(Math.random() * questions.length);
-  }
-
-
-
-
-// setQuestion();
