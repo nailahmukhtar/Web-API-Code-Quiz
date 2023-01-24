@@ -5,6 +5,8 @@ var startScreen = document.querySelector("#start-screen");
 var questionsScreen = document.querySelector("#questions");
 var endScreen = document.querySelector("#end-screen");
 var button = document.querySelector("button");
+var finalScore = document.querySelector("#final-score");
+
 
 //question Selectors
 var questionElement = document.querySelector("#question-title");
@@ -64,6 +66,7 @@ function endGame() {
   questionsScreen.setAttribute("class", "hide");
   endScreen.setAttribute("class", "start"); 
   secondsLeft = 1;
+  finalScore.textContent = points;
 
 }
 
